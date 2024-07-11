@@ -1,5 +1,13 @@
 # prometheus-kbot
-devops application from scratch
+This is Telegram bot
+Bot available here `https://t.me/prometheuskbor_bot`
+
+## Setup app
+You need to set TELE_TOKEN and pass Telegram API access token
+
+Run this command:  
+`read -s TELE_TOKEN`  
+`export TELE_TOKEN`  
 
 ## Start app
 run command `./prometheus-kbot go`
