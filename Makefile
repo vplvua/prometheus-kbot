@@ -4,7 +4,7 @@ TARGETOS=linux
 format:
 	gofmt -s -w ./
 
-build: format
+build: format get
 	CGO_ENABLAD=0 GOOS=${TARGETOS} GOARCH=${shell dpkg --print-architecture} go build -v -ldflags "-X github.com/vplvua/prometheus-kbot/cmd.appVersion=${VERSION}" -o prometheus-kbot 
 
 lint:
@@ -15,3 +15,6 @@ test:
 
 clean:
 	rm -rf prometheus-kbot
+
+get:
+	go get
