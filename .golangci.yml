@@ -1,0 +1,9 @@
+linters:
+  enable:
+    - gofmt
+    - revive
+    - govet
+    - errcheck
+
+issues:
+  exclude-use-default: false

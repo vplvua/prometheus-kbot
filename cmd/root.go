@@ -1,6 +1,4 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-*/
+// Package cmd Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
