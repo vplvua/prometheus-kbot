@@ -1,11 +1,25 @@
-FROM golang:1.22.5 AS builder
+# Build stage
+FROM quay.io/projectquay/golang:1.20 AS builder
 
 WORKDIR /go/src/app
+COPY go.mod go.sum ./
+RUN go mod download
 COPY . .
-RUN make build
+ARG TARGETOS
+ARG TARGETARCH
+RUN make TARGETOS=${TARGETOS} TARGETARCH=${TARGETARCH} build
 
-FROM busybox:latest
+# Final stage
+FROM scratch
 WORKDIR /
-COPY --from=builder /go/src/app/prometheus-kbot .
+ARG TARGETOS
+ARG TARGETARCH
+COPY --from=builder /go/src/app/prometheus-kbot-${TARGETOS}-${TARGETARCH} /prometheus-kbot
 COPY --from=alpine:latest /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-ENTRYPOINT [ "./prometheus-kbot" ]
+
+LABEL maintainer="Vasyl Pashko vasyl.pashko@gmail.com"
+LABEL source="https://github.com/vplvua/prometheus-kbot"
+LABEL version="1.0"
+LABEL description="Prometheus kbot application"
+
+ENTRYPOINT [ "/prometheus-kbot" ]
