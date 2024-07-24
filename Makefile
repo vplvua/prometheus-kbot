@@ -17,7 +17,6 @@ docker_build:
 	docker buildx build --platform ${TARGETOS}/${TARGETARCH} -t ${REGISTRY}/${APP}-${TARGETOS}-${TARGETARCH}:${VERSION} . --push
 
 image: 
-	${MAKE} build TARGETOS=${TARGETOS} TARGETARCH=${TARGETARCH}
 	${MAKE} docker_build TARGETOS=${TARGETOS} TARGETARCH=${TARGETARCH}
 
 lint:
