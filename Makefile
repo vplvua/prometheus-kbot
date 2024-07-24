@@ -13,11 +13,8 @@ get:
 build: format get
 	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -ldflags "-X github.com/vplvua/prometheus-kbot/cmd.appVersion=${VERSION}" -o prometheus-kbot-${TARGETOS}-${TARGETARCH}
 
-docker_build:
+image:
 	docker buildx build --platform ${TARGETOS}/${TARGETARCH} -t ${REGISTRY}/${APP}-${TARGETOS}-${TARGETARCH}:${VERSION} . --push
-
-image: 
-	${MAKE} docker_build TARGETOS=${TARGETOS} TARGETARCH=${TARGETARCH}
 
 lint:
 	golangci-lint run
