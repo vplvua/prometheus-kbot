@@ -29,10 +29,6 @@ test:
 clean:
 	rm -rf prometheus-kbot*
 	docker rmi ${REGISTRY}/${APP}-linux-amd64:${VERSION} || true
-	docker rmi ${REGISTRY}/${APP}-linux-arm64:${VERSION} || true
-	docker rmi ${REGISTRY}/${APP}-darwin-amd64:${VERSION} || true
-	docker rmi ${REGISTRY}/${APP}-darwin-arm64:${VERSION} || true
-	docker rmi ${REGISTRY}/${APP}-windows-amd64:${VERSION} || true
 
 linux: linux-amd64 linux-arm64
 
